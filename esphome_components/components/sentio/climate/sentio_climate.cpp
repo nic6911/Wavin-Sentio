@@ -17,15 +17,9 @@ void SentioClimate::setup() {
     target_temperature = state;
     publish_state();
   });
-  rel_humid_sensor_->add_on_state_callback([this](float state) {
-    // ESP_LOGD(TAG, "HUMIDITY SENSOR CALLBACK: %f", state);
-    rel_humid = state;
-    publish_state();
-  });
 
   current_temperature = current_temp_sensor_->state;
   target_temperature  = temp_setpoint_number_->state;
-  rel_humid = rel_humid_sensor_->state;
 }
 
 void SentioClimate::control(const climate::ClimateCall& call) {

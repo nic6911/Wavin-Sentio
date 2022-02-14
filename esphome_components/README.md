@@ -113,6 +113,8 @@ modbus_controller:
   
 
 
+sentio:
+
 sensor:
 
 #########################
@@ -126,11 +128,10 @@ sensor:
     register_type: holding
     address: 0x00004
 
-      
   - platform: modbus_controller
     modbus_controller_id: sentio_modbus_controller
-    name: "Room1"
-    id: temp_room1
+    name: "${channel_1} temperatur"
+    id: temperatur_channel_1
     unit_of_measurement: °C
     accuracy_decimals: 1
     device_class: temperature
@@ -141,8 +142,8 @@ sensor:
       
   - platform: modbus_controller
     modbus_controller_id: sentio_modbus_controller
-    name: "Room1humid"
-    id: rel_humid_room1
+    name: "${channel_1} luftfugtighed"
+    id: luftfugtighed_channel_1
     unit_of_measurement: '%'
     accuracy_decimals: 1
     device_class: humidity
@@ -151,12 +152,37 @@ sensor:
     filters:
       - multiply: 0.01      
 
+      
+  - platform: modbus_controller
+    modbus_controller_id: sentio_modbus_controller
+    name: "${channel_2} temperatur"
+    id: temperatur_channel_2
+    unit_of_measurement: °C
+    accuracy_decimals: 1
+    device_class: temperature
+    register_type: read
+    address: 204
+    filters:
+      - multiply: 0.01
+      
+  - platform: modbus_controller
+    modbus_controller_id: sentio_modbus_controller
+    name: "${channel_2} luftfugtighed"
+    id: luftfugtighed_channel_2
+    unit_of_measurement: '%'
+    accuracy_decimals: 1
+    device_class: humidity
+    register_type: read
+    address: 206
+    filters:
+      - multiply: 0.01            
+
 number:
 
   - platform: modbus_controller
     modbus_controller_id: sentio_modbus_controller
-    name: "User temperature set"
-    id: sentio_target_temperature_set
+    name: "${channel_1} temperatur setpunkt"
+    id: temperatur_setpunkt_channel_1
     min_value: 10.0
     max_value: 30.0
     step: 0.5
@@ -166,12 +192,28 @@ number:
     write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
     lambda: "return x*0.01;"
     
-      
+  - platform: modbus_controller
+    modbus_controller_id: sentio_modbus_controller
+    name: "${channel_1} temperatur setpunkt"
+    id: temperatur_setpunkt_channel_2
+    min_value: 10.0
+    max_value: 30.0
+    step: 0.5
+    address: 219
+    force_new_range: true
+    use_write_multiple: true 
+    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
+    lambda: "return x*0.01;"      
 
 climate:
   - platform: sentio
-    name: Sentio
-    current_temp_sensor_id: temp_room1
-    target_temp_sensor_id: sentio_target_temperature_set
-    relative_humidity_sensor_id: rel_humid_room1
+    name: ${channel_1}
+    current_temp_sensor_id: temperatur_channel_1
+    target_temp_sensor_id: temperatur_setpunkt_channel_1
+
+  - platform: sentio
+    name: ${channel_2}
+    current_temp_sensor_id: temperatur_channel_2
+    target_temp_sensor_id: temperatur_setpunkt_channel_2
+
 ```

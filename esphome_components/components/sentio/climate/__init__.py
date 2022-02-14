@@ -8,7 +8,6 @@ from esphome.const import (
 
 CONF_TARGET_TEMP = "target_temp_sensor_id"
 CONF_CURRENT_TEMP = "current_temp_sensor_id"
-CONF_REL_HUMID = "relative_humidity_sensor_id"
 
 sentio_ns = cg.esphome_ns.namespace('sentio')
 SentioClimate = sentio_ns.class_('SentioClimate', climate.Climate, cg.Component)
@@ -18,7 +17,6 @@ CONFIG_SCHEMA = climate.CLIMATE_SCHEMA.extend({
     cv.GenerateID(CONF_SENTIO_ID): cv.use_id(Sentio),
     cv.Required(CONF_TARGET_TEMP): cv.use_id(number.Number),
     cv.Required(CONF_CURRENT_TEMP): cv.use_id(sensor.Sensor),
-    cv.Required(CONF_REL_HUMID): cv.use_id(sensor.Sensor),
 }).extend(cv.COMPONENT_SCHEMA)
  
 def to_code(config):
@@ -31,6 +29,3 @@ def to_code(config):
 
     sens_current_temp = yield cg.get_variable(config[CONF_CURRENT_TEMP])
     cg.add(var.current_temp_sensor(sens_current_temp))
-
-    sens_rel_humid = yield cg.get_variable(config[CONF_REL_HUMID])
-    cg.add(var.sens_rel_humid_sensor(sens_rel_humid))

@@ -23,6 +23,10 @@ public:
     this->temp_setpoint_number_ = number;
   }
 
+   void mode_select(sensor::Sensor *sensor) {
+    this->mode_select_ = sensor;
+  } 
+
 protected:
   /// Override control to change settings of the climate device.
   void control(const climate::ClimateCall& call) override;
@@ -36,6 +40,11 @@ protected:
   /// The number component used for getting the temperature setpoint
   number::Number *temp_setpoint_number_{ nullptr };
 
+  sensor::Sensor *mode_select_{ nullptr };
+
+private:
+  void sentio_mode_to_climatemode(const int state);
+  
 };
 } // namespace sentio
 } // namespace esphome

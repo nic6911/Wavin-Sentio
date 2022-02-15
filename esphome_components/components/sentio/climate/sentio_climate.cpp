@@ -18,8 +18,15 @@ void SentioClimate::setup() {
     publish_state();
   });
 
+  mode_select_->add_on_state_callback([this](float state) {
+    // ESP_LOGD(TAG, "FAN SPEED SENSOR CALLBACK: %f", state);
+    sentio_mode_to_climatemode(state);
+    publish_state();
+  });
+
   current_temperature = current_temp_sensor_->state;
   target_temperature  = temp_setpoint_number_->state;
+  sentio_mode_to_climatemode(mode_select_->state); 
 }
 
 void SentioClimate::control(const climate::ClimateCall& call) {
@@ -31,7 +38,6 @@ void SentioClimate::control(const climate::ClimateCall& call) {
     temp_setpoint_number_->set(target);
   }
 }
-
 
 climate::ClimateTraits SentioClimate::traits() {
   auto traits = climate::ClimateTraits();
@@ -46,6 +52,24 @@ climate::ClimateTraits SentioClimate::traits() {
 
 void SentioClimate::dump_config() {
   LOG_CLIMATE("", "Sentio Climate", this);
+}
+
+void SentioClimate::sentio_mode_to_climatemode(const int state)
+{
+  switch (state) {
+  case 1:
+    this->mode = climate::CLIMATE_MODE_OFF;
+    break;
+  case 2:
+    this->mode = climate::CLIMATE_MODE_HEAT;
+    break;
+  case 3:
+    this->mode = climate::CLIMATE_MODE_COOL;
+    break;
+  default: 
+    this->mode = climate::CLIMATE_MODE_OFF;
+    break;
+  }
 }
 
 } // namespace sentio

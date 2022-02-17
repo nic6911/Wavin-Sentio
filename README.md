@@ -1,5 +1,9 @@
 # Wavin Sentio in ESPHome
 
+This is an ESPHome implementation of Wavin Sentio modbus interface.
+Hardware used here is developed by me - contact me if you need hardware and dont want to construct it yourself.
+For details on the hardware look here: https://github.com/nic6911/Wavin-AHC-9000-mqtt
+
 ## Documentation
 Look in the documentation folder and more specifically from page 140 in "Sentio Technical-Handbook Sept 21.pdf"
 All other documentation in the folder is complementary
@@ -11,8 +15,7 @@ All other documentation in the folder is complementary
 #      WAVIN SENTIO FLOOR HEATING CONTROLLER SOFTWARE FOR HOME ASSISTANT               #
 #                                                                                      #   
 #        Code developed by : Mogens Groth Nicolaisen                                   #
-#                                                                                      #
-# https://github.com/heinekmadsen/esphome_components/tree/main/components/wavinAhc9000 #    
+#                                                                                      #  
 #                                                                                      #
 # Hardware by : Mogens Groth Nicolaisen https://github.com/nic6911/Wavin-AHC-9000-mqtt #                                                                                       
 #                                                                                      #

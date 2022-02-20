@@ -1,8 +1,23 @@
 # Wavin Sentio in ESPHome
 
-This is an ESPHome implementation of Wavin Sentio modbus interface.
-Hardware used here is developed by me - contact me if you need hardware and dont want to construct it yourself.
-For details on the hardware look here: https://github.com/nic6911/Wavin-AHC-9000-mqtt
+This is a simple Esp8266 ESPHome interface for Wavin Sentio enabling you to control your heating from Home Assistant. 
+
+## Disclaimer
+Do this at your own risk ! You are interfacing with hardware that you can potentially damage if you do not connect things as required !
+Using the hardware and code presented here is done at you own risk. The hardware has been tested on Wavin AHC9000, Wavin Sentio and Nilan Comfort 300 without issues.
+
+## Hardware
+
+Hardware used here is developed by me and is a mutli-purpose ESP-01 Modbus module that was intended for Wavin AHC9000, Wavin Sentio and Nilan ventilation. But since it is pretty generic it will suit most modus applications.
+The hardware includes buck converter supplying the ESP-01 and Modbus module with 3.3V from anything going from 8-24V (28V absolute max rating) as 12V and 24V are usually available on these systems for powering something like this.
+
+Contact me if you need hardware and dont want to construct it yourself.
+For more details on the hardware look here: https://github.com/nic6911/Wavin-AHC-9000-mqtt
+
+## Software
+
+This is an ESPHome implementation of Wavin Sentio modbus interface - look at the example below to see how its used.
+I made an esphome component for the Sentio supporting the code below - look here: https://github.com/nic6911/esphome_components/tree/Wavin_Sentio
 
 ## Documentation
 Look in the documentation folder and more specifically from page 140 in "Sentio Technical-Handbook Sept 21.pdf"

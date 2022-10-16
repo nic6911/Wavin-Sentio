@@ -519,9 +519,7 @@ number:
     address: 119
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;"
-    internal: true
+    multiply: 100
 
 ## Channel 2    
   - platform: modbus_controller
@@ -534,9 +532,7 @@ number:
     address: 219
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
+    multiply: 100
 
 ## Channel 3    
   - platform: modbus_controller
@@ -549,9 +545,7 @@ number:
     address: 319
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
+    multiply: 100
 
 ## Channel 4   
   - platform: modbus_controller
@@ -564,9 +558,7 @@ number:
     address: 419
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
+    multiply: 100
 
 ## Channel 5   
   - platform: modbus_controller
@@ -579,9 +571,7 @@ number:
     address: 519
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
+    multiply: 100
 
 ## Channel 6    
   - platform: modbus_controller
@@ -594,9 +584,7 @@ number:
     address: 619
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
+    multiply: 100
 
 ## Channel 7   
   - platform: modbus_controller
@@ -609,9 +597,7 @@ number:
     address: 719
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
+    multiply: 100
 
 ## Channel 8    
   - platform: modbus_controller
@@ -624,9 +610,7 @@ number:
     address: 819
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
+    multiply: 100
 
 ## Channel 9    
   - platform: modbus_controller
@@ -639,24 +623,7 @@ number:
     address: 919
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
-
-## Channel 10    
-  - platform: modbus_controller
-    modbus_controller_id: sentio_modbus_controller
-    name: "${channel_10} temperatur setpunkt"
-    id: temperatur_setpunkt_channel_10
-    min_value: 10.0
-    max_value: 30.0
-    step: 0.5
-    address: 1019
-    force_new_range: true
-    use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true
+    multiply: 100
     
 ## Channel 11   
   - platform: modbus_controller
@@ -669,9 +636,7 @@ number:
     address: 1119
     force_new_range: true
     use_write_multiple: true 
-    write_lambda: "payload = modbus_controller::float_to_payload(x*100, modbus_controller::SensorValueType::U_WORD); return x;"
-    lambda: "return x*0.01;" 
-    internal: true    
+    multiply: 100    
 
 #########################
 #### CLIMATE ENTITIES ###

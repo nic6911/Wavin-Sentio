@@ -8,11 +8,7 @@ Using the hardware and code presented here is done at you own risk. The hardware
 
 ## Hardware
 
-Hardware used here is developed by me and is a mutli-purpose ESP-01 Modbus module that was intended for Wavin AHC9000, Wavin Sentio and Nilan ventilation. But since it is pretty generic it will suit most modus applications.
-The hardware includes buck converter supplying the ESP-01 and Modbus module with 3.3V from anything going from 8-24V (28V absolute max rating) as 12V and 24V are usually available on these systems for powering something like this.
-
-Contact me if you need hardware and dont want to construct it yourself.
-For more details on the hardware look here: https://github.com/nic6911/Wavin-AHC-9000-mqtt
+Look here: https://github.com/nic6911/ESP32_Modbus_Module
 
 ## Software
 
@@ -31,9 +27,9 @@ All other documentation in the folder is complementary
 #                                                                                      #   
 #        Code developed by : Mogens Groth Nicolaisen                                   #
 #                                                                                      #
-# https://github.com/nic6911/esphome_components/tree/main/components/sentio            #    
+# https://github.com/heinekmadsen/esphome_components/tree/main/components/wavinAhc9000 #    
 #                                                                                      #
-# Hardware by : Mogens Groth Nicolaisen https://github.com/nic6911/ESP32_Modus_Module  #                                                                                       
+# Hardware by : Mogens Groth Nicolaisen https://github.com/nic6911/Wavin-AHC-9000-mqtt #                                                                                       
 #                                                                                      #
 ########################################################################################
 
@@ -68,14 +64,9 @@ substitutions:
   channel_15: <Unused>
   channel_16: <Unused>
   
-  # TEMP STEP + CLIMATE MIN/MAX LIMIT TEMP SETPOINT
-  temp_step:   '0.5'
-  climate_min_temp: '12'  
-  climate_max_temp: '30'
-  
   # PIN DEFINITIONS (Should in most cases not be changed) 
-  rx_pin: '13'
-  tx_pin: '14'
+  rx_pin: '20'
+  tx_pin: '21'
 
   # WiFi settings
   ssid_set: !secret wifi_ssid
@@ -89,7 +80,7 @@ esphome:
   name: ${device_name}
 
 esp32:
-  board: pico32
+  board: esp32-c3-devkitm-1
   framework:
     type: arduino
 
@@ -102,6 +93,7 @@ api:
   
 ota:
 
+
 wifi:
   ssid: ${ssid_set}
   password: ${password_set}
@@ -111,7 +103,7 @@ wifi:
     ssid: "Wavin Fallback Hotspot"
 
 captive_portal:  
-    
+
 uart:
   rx_pin: ${rx_pin}
   tx_pin: ${tx_pin}
@@ -123,14 +115,14 @@ uart:
 modbus:
   id: modbus_id
   uart_id: uart_modbus
-  flow_control_pin: 26
+  flow_control_pin: 10
   
 modbus_controller:
   id: sentio_modbus_controller
   address: 1
   modbus_id: modbus_id
   update_interval: ${update_interval}
-
+      
 # Uncomment the active channels on your Wavin Sentio
 packages:
   remote_package:

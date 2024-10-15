@@ -6,6 +6,23 @@ This is a simple Esp8266 ESPHome interface for Wavin Sentio enabling you to cont
 Do this at your own risk ! You are interfacing with hardware that you can potentially damage if you do not connect things as required !
 Using the hardware and code presented here is done at you own risk. The hardware has been tested on Wavin AHC9000, Wavin Sentio and Nilan Comfort 300 without issues.
 
+## Enabling Modbus on Sentio
+How to enable modbus on the Sentio without the display:
+
+- Connect LAN
+- Install mobile phone app and register the unit
+- Go to Settings -> Temporary access management
+- Install the SW from here: https://wavin.com/en-en/sentio-smartconnect
+- Create a user in the new SW (needs to use a different email address)
+- Add a remote connection using the S/N + credentials for the temporary access setup in the mobile app
+- Start the remote display connection
+- System -> Modbus Configuration
+- RTU mode -> Slave Read/Write
+- ...wait for reboot...
+- Again go to System -> Modbus Configuration
+- Change Parity to None and stop bits to 1 (compare with your esphome yaml settings)
+- Profit
+
 ## Hardware
 
 Look here: https://github.com/nic6911/ESP32_Modbus_Module

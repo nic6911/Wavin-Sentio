@@ -7,6 +7,12 @@ Do this at your own risk ! You are interfacing with hardware that you can potent
 Using the hardware and code presented here is done at you own risk. The hardware has been tested on Wavin AHC9000, Wavin Sentio and Nilan Comfort 300 without issues.
 
 ## Enabling Modbus on Sentio
+It's now possible to enable modbus access purely through a web interface that Wavin has made available at https://portal.wavinsentio.com.
+
+After updating the firmware for your devices through the physical Sentio-device you can add them to the web interface,
+request "installer access", and then get an online view of what the Sentio LCD screen add-on product would display allowing you to enable modbus in the settings pane.
+
+### Alternative method
 How to enable modbus on the Sentio without the display:
 
 - Connect LAN
